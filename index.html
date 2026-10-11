@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="A fictional specialty coffee experience, designed by Shadeveil.">
+  <title>STILLHOUSE — Coffee, Considered.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+    :root {
+      --bg: #11110f;
+      --panel: #191916;
+      --cream: #f1ede4;
+      --muted: #aaa69d;
+      --line: rgba(241,237,228,.16);
+      --accent: #c4a982;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(1180px, 88%); margin: auto; }
+    header {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 24px;
+    }
+    .brand {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: .22em;
+    }
+    .brand span { color: var(--accent); }
+    .links { display: flex; gap: 30px; font-size: 13px; color: var(--muted); }
+    .links a:hover { color: var(--cream); }
+    .nav-cta {
+      border: 1px solid var(--line);
+      padding: 11px 16px;
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+    .hero {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 50px;
+      padding-top: 65px;
+      padding-bottom: 65px;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 10px;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(46px, 6vw, 78px);
+      line-height: 1.04;
+      font-weight: 400;
+      letter-spacing: -.045em;
+      margin: 22px 0;
+    }
+    h1 em { color: var(--accent); font-weight: 400; }
+    .intro { max-width: 420px; color: var(--muted); font-size: 15px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      transition: .2s ease;
+    }
+    .btn.primary { background: var(--cream); color: var(--bg); border-color: var(--cream); }
+    .btn:hover { transform: translateY(-2px); }
+    .hero-image {
+      height: 480px;
+      position: relative;
+      background: #24201a;
+      overflow: hidden;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .image-label {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      background: rgba(17,17,15,.84);
+      padding: 12px 15px;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+    .ticker {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 17px 0;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-align: center;
+    }
+    section { padding: 100px 0; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 38px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(35px, 4vw, 52px);
+      line-height: 1.12;
+      font-weight: 400;
+      letter-spacing: -.035em;
+      margin: 12px 0 0;
+    }
+    .section-note { color: var(--muted); font-size: 13px; max-width: 280px; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .menu-card { background: var(--panel); border: 1px solid var(--line); }
+    .menu-card img { width: 100%; height: 230px; object-fit: cover; display: block; }
+    .menu-content { padding: 22px; }
+    .menu-title { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; }
+    .price { color: var(--accent); white-space: nowrap; }
+    .menu-content p { color: var(--muted); font-size: 12px; margin: 10px 0 0; }
+    .story {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+      background: #181815;
+    }
+    .story-image { height: 440px; }
+    .story-image img { width: 100%; height: 100%; object-fit: cover; }
+    .story-copy { padding-right: max(6vw, calc((100vw - 1180px)/2)); }
+    .story-copy p { color: var(--muted); font-size: 14px; max-width: 440px; margin-top: 22px; }
+    .story-copy .btn { margin-top: 12px; }
+    .visit {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+    .visit-info { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 35px; }
+    .visit-info h3 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+    .visit-info p { font-size: 13px; color: var(--muted); }
+    .map-panel {
+      min-height: 340px;
+      background: linear-gradient(145deg, #29251f, #171715);
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      text-align: center;
+      padding: 30px;
+    }
+    .map-panel span { font-family: 'Playfair Display', serif; font-size: 27px; }
+    .map-panel p { color: var(--muted); font-size: 12px; }
+    footer { border-top: 1px solid var(--line); padding: 35px 0; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
+    .footer-row strong { color: var(--cream); letter-spacing: .18em; }
+    @media (max-width: 760px) {
+      header { height: 70px; }
+      .links { display: none; }
+      .nav-cta { padding: 9px 11px; }
+      .hero { grid-template-columns: 1fr; gap: 35px; padding-top: 55px; min-height: auto; }
+      h1 { font-size: clamp(48px, 13vw, 70px); }
+      .hero-image { height: 390px; }
+      section { padding: 70px 0; }
+      .section-head { display: block; }
+      .section-note { margin-top: 18px; }
+      .menu-grid { grid-template-columns: 1fr; gap: 16px; }
+      .menu-card img { height: 260px; }
+      .story { grid-template-columns: 1fr; gap: 35px; }
+      .story-image { height: 340px; }
+      .story-copy { padding: 0 6%; }
+      .visit { grid-template-columns: 1fr; gap: 35px; }
+      .visit-info { gap: 18px; }
+      .map-panel { min-height: 250px; }
+      .footer-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Main navigation">
+        <a class="brand" href="#home">STILL<span>HOUSE</span></a>
+        <div class="links">
+          <a href="#menu">The menu</a>
+          <a href="#story">Our philosophy</a>
+          <a href="#visit">Find us</a>
+        </div>
+        <a class="nav-cta" href="#visit">VISIT US ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow">Specialty coffee · Since 2021</div>
+        <h1>A quieter<br>kind of <em>coffee.</em></h1>
+        <p class="intro">Thoughtfully sourced beans, carefully considered craft, and a little room to breathe. Welcome to your new favourite corner of the city.</p>
+        <div class="actions">
+          <a class="btn primary" href="#menu">EXPLORE THE MENU ↗</a>
+          <a class="btn" href="#story">OUR PHILOSOPHY</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85" alt="Warm, intimate specialty coffee shop interior">
+        <div class="image-label">01 / A SPACE TO SLOW DOWN</div>
+      </div>
+    </div>
+    <div class="ticker">SINGLE ORIGIN · SMALL BATCH · MADE WITH INTENTION · SERVED FRESH</div>
+    <section id="menu">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Made with intention</div>
+            <h2>The everyday,<br>made exceptional.</h2>
+          </div>
+          <p class="section-note">A considered selection of familiar favourites and new discoveries. Always prepared with care.</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=900&q=80" alt="Freshly brewed filter coffee">
+            <div class="menu-content">
+              <div class="menu-title"><span>House Filter</span><span class="price">$4.50</span></div>
+              <p>Seasonal single-origin coffee, brewed slowly for clarity and balance.</p>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80" alt="Creamy iced coffee">
+            <div class="menu-content">
+              <div class="menu-title"><span>Iced Velvet</span><span class="price">$5.50</span></div>
+              <p>Double espresso, cold milk, and a silky finish over ice.</p>
+            </div>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80" alt="Fresh espresso in a ceramic cup">
+            <div class="menu-content">
+              <div class="menu-title"><span>House Espresso</span><span class="price">$3.50</span></div>
+              <p>Rich chocolate notes, a gentle sweetness, and a clean finish.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="story" id="story">
+      <div class="story-image">
+        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=85" alt="Barista carefully preparing coffee">
+      </div>
+      <div class="story-copy">
+        <div class="eyebrow">Less noise. More meaning.</div>
+        <h2>Good coffee.<br>Nothing to prove.</h2>
+        <p>We believe the best moments don't need much. Great ingredients, thoughtful preparation, a welcoming space, and time to enjoy it all. That's the idea behind Stillhouse.</p>
+        <p>We're a fictional café concept created for the Shadeveil portfolio. The brand, menu, prices, and location shown here are illustrative.</p>
+        <a class="btn" href="#visit">COME FIND YOUR CORNER ↗</a>
+      </div>
+    </section>
+    <section id="visit">
+      <div class="wrap visit">
+        <div>
+          <div class="eyebrow">Your table is waiting</div>
+          <h2>Make a little<br>room for yourself.</h2>
+          <div class="visit-info">
+            <div>
+              <h3>Opening hours</h3>
+              <p>Mon–Fri · 7am–6pm<br>Sat–Sun · 8am–5pm</p>
+            </div>
+            <div>
+              <h3>Find us</h3>
+              <p>Fictional address<br>Created for this demo</p>
+            </div>
+          </div>
+        </div>
+        <div class="map-panel">
+          <div>
+            <span>Stillhouse Coffee</span>
+            <p>YOUR NEXT FAVOURITE CORNER</p>
+            <a class="btn" href="mailto:hello@example.com">GET IN TOUCH ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap footer-row">
+      <strong>STILLHOUSE</strong>
+      <span>Fictional portfolio concept by SHADEVEIL</span>
+      <span>© 2026 · Designed with intention.</span>
+    </div>
+  </footer>
+</body>
+</html>
